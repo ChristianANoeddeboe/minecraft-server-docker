@@ -1,0 +1,20 @@
+services:
+  server:
+    container_name: minecraft
+    #image: minecraft:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: "host" # use host network for better performance
+    restart: unless-stopped
+    command: sh /var/minecraft/start.sh
+    volumes:
+      - data:/var/minecraft
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "./data"
