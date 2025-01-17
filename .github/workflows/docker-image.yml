@@ -36,7 +36,7 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           curl -H "Content-Type: application/json" \
-               -d "{\"content\": \"Docker image has been successfully built and pushed to Docker Hub.\"}" \
+               -d "{\"content\": \"**✅ Docker image has been successfully built and pushed to Docker Hub.**\n\n**Release:** latest\n**Build Link:** [View Build]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)\"}" \
                $DISCORD_WEBHOOK_URL
 
       - name: Send Discord notification on failure
@@ -45,5 +45,5 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           curl -H "Content-Type: application/json" \
-               -d "{\"content\": \"Failed to build and push Docker image.\"}" \
+               -d "{\"content\": \"**❌ Release Build Failed!**\n\n**Release:** latest\n**Error Details:** Please check the build logs for more information.\n**Build Link:** [View Build]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)\"}" \
                $DISCORD_WEBHOOK_URL
