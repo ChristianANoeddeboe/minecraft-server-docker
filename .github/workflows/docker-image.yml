@@ -28,7 +28,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/minecraft-server:latest
+          tags: angercraft/minecraft-server:latest
 
       - name: Send Discord notification on success
         if: success()
